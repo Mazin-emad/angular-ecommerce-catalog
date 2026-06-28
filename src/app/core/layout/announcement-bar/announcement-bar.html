@@ -1,12 +1,17 @@
 @if (announcementMessage) {
-  <div class="announcement-bar">
-    <div class="container">
-      <div class="flex gap-4 items-center">
-        <p>{{ announcementMessage }}</p>
-        <a href="#" class="bold hover:underline">Shop Now</a>
+  <div class="bg-black text-white px-4 py-2 md:py-2.5 overflow-hidden md:overflow-visible">
+    <div class="max-w-6xl mx-auto flex items-center justify-between gap-2">
+      <div class="flex-1 min-w-0 overflow-hidden md:overflow-visible">
+        <div class="flex gap-2 md:gap-4 items-center text-xs sm:text-sm">
+          <p class="marquee whitespace-nowrap md:whitespace-normal">
+            {{ announcementMessage }}
+          </p>
+          <a routerLink="/" class="hidden md:inline font-semibold hover:underline shrink-0">Shop Now</a>
+        </div>
       </div>
-      <div class="language-selector">
-        <select id="language-select" class="bg-black text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500" [(ngModel)]="selectedLanguage" (change)="onLanguageChange()">
+      <div class="flex items-center gap-2 shrink-0">
+        <a routerLink="/" class="md:hidden font-semibold hover:underline text-xs">Shop Now</a>
+        <select id="language-select" class="bg-black text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 text-xs" [(ngModel)]="selectedLanguage" (change)="onLanguageChange()">
           @for (language of languages; track language.code) {
             <option [value]="language.code">
               {{ language.name }}

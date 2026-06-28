@@ -1,9 +1,20 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
-  imports: [],
+  standalone: true,
+  imports: [FormsModule, RouterLink],
   templateUrl: './footer.html',
-  styleUrl: './footer.scss',
 })
-export class Footer {}
+export class Footer {
+  email = '';
+
+  subscribe() {
+    if (this.email.trim()) {
+      console.log('Subscribed:', this.email);
+      this.email = '';
+    }
+  }
+}

@@ -1,9 +1,30 @@
+// nav-bar.ts
 import { Component } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-header',
-  imports: [],
+  standalone: true,
+  imports: [RouterLink, RouterLinkActive, FormsModule],
   templateUrl: './header.html',
-  styleUrl: './header.scss',
 })
-export class Header {}
+export class Header {
+  searchQuery = '';
+  wishlistCount = 0;
+  cartCount = 0;
+  menuOpen = false;
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+
+  closeMenu() {
+    this.menuOpen = false;
+  }
+
+  onSearch() {
+    if (!this.searchQuery.trim()) return;
+    console.log('Searching for:', this.searchQuery);
+  }
+}

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { toast } from 'ngx-sonner';
 
 interface Language {
@@ -10,9 +11,8 @@ interface Language {
 @Component({
   selector: 'app-announcement-bar',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, RouterLink],
   templateUrl: './announcement-bar.html',
-  styleUrl: './announcement-bar.scss',
 })
 export class AnnouncementBar implements OnInit {
   announcementMessage: string = '';
