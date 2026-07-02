@@ -4,6 +4,56 @@ a {
   cursor: pointer;
 }
 
+/* ── Toast Variants ── */
+
+[data-sonner-toaster] [data-type="success"] {
+  background-color: #16a34a !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+[data-sonner-toaster] [data-type="error"] {
+  background-color: #dc2626 !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+[data-sonner-toaster] [data-type="warning"] {
+  background-color: #d97706 !important;
+  color: #fff !important;
+  border: none !important;
+}
+
+[data-sonner-toaster] [data-type="success"] [data-lucide="check-circle-2"],
+[data-sonner-toaster] [data-type="success"] svg:last-child {
+  color: #fff !important;
+}
+
+[data-sonner-toaster] [data-type="error"] [data-lucide="x-circle"],
+[data-sonner-toaster] [data-type="error"] svg:last-child {
+  color: #fff !important;
+}
+
+[data-sonner-toaster] [data-type="warning"] [data-lucide="alert-triangle"],
+[data-sonner-toaster] [data-type="warning"] svg:last-child {
+  color: #fff !important;
+}
+
+[data-sonner-toaster] [data-type="success"] button,
+[data-sonner-toaster] [data-type="error"] button,
+[data-sonner-toaster] [data-type="warning"] button {
+  color: #fff !important;
+  opacity: 0.8;
+}
+
+[data-sonner-toaster] [data-type="success"] button:hover,
+[data-sonner-toaster] [data-type="error"] button:hover,
+[data-sonner-toaster] [data-type="warning"] button:hover {
+  opacity: 1;
+}
+
+/* ── Marquee ── */
+
 @media (width < 48rem) {
   @keyframes marquee {
     0% { transform: translateX(100%); }

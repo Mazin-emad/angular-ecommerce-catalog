@@ -1,1 +1,7 @@
-<p>home works!</p>
+<section class="flex flex-col md:flex-row gap-6 md:gap-12 min-h-100">
+  <app-categories [categories]="categories" />
+  <app-hero-banner [slides]="slides" />
+</section>
+<app-products />
+<app-browse-by-category />
+<app-best-selling-products />

@@ -43,38 +43,30 @@
 
     <!-- Right: Contact Form -->
     <div class="border border-gray-200 rounded-lg p-8">
-      <form (submit)="onSubmit($event)" class="space-y-6">
+      <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="space-y-6">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <input
             type="text"
-            name="name"
+            formControlName="name"
             placeholder="Your Name *"
-            [(ngModel)]="name"
-            required
             class="w-full px-4 py-3 bg-gray-100 rounded text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-300"
           />
           <input
             type="email"
-            name="email"
+            formControlName="email"
             placeholder="Your Email *"
-            [(ngModel)]="email"
-            required
             class="w-full px-4 py-3 bg-gray-100 rounded text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-300"
           />
           <input
             type="tel"
-            name="phone"
+            formControlName="phone"
             placeholder="Your Phone *"
-            [(ngModel)]="phone"
-            required
             class="w-full px-4 py-3 bg-gray-100 rounded text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-300"
           />
         </div>
         <textarea
-          name="message"
+          formControlName="message"
           placeholder="Your Message"
-          [(ngModel)]="message"
-          required
           rows="8"
           class="w-full px-4 py-3 bg-gray-100 rounded text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-gray-300 resize-none"
         ></textarea>
@@ -88,18 +80,6 @@
           </button>
         </div>
       </form>
-
-      @if (submitSuccess) {
-        <div class="mt-4 p-4 bg-green-50 text-green-700 rounded text-sm">
-          Message sent successfully! We'll get back to you soon.
-        </div>
-      }
-
-      @if (submitError) {
-        <div class="mt-4 p-4 bg-red-50 text-red-700 rounded text-sm">
-          Something went wrong. Please try again later.
-        </div>
-      }
     </div>
   </div>
 </div>

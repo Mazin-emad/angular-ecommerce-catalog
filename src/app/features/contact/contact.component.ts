@@ -1,57 +1,54 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+
 import { RouterLink } from '@angular/router';
+
+import { toast } from 'ngx-sonner';
+
+import { ContactService } from '../../core/services/contact';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [FormsModule, RouterLink],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './contact.component.html',
 })
 export class ContactComponent {
-  name = '';
-  email = '';
-  phone = '';
-  message = '';
-  isSubmitting = false;
-  submitSuccess = false;
-  submitError = false;
+  private readonly fb = inject(FormBuilder);
 
-  async onSubmit(event: Event) {
-    event.preventDefault();
+  private readonly contactService = inject(ContactService);
+
+  isSubmitting = false;
+
+  contactForm = this.fb.nonNullable.group({
+    name: ['', Validators.required],
+
+    email: ['', [Validators.required, Validators.email]],
+
+    phone: ['', Validators.required],
+
+    message: ['', Validators.required],
+  });
+
+  async onSubmit() {
+    if (this.contactForm.invalid) {
+      this.contactForm.markAllAsTouched();
+
+      toast.error('Please fill in all required fields.');
+
+      return;
+    }
+
     this.isSubmitting = true;
-    this.submitSuccess = false;
-    this.submitError = false;
 
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify({
-          access_key: 'YOUR_ACCESS_KEY_HERE',
-          name: this.name,
-          email: this.email,
-          phone: this.phone,
-          message: this.message,
-        }),
-      });
+      await this.contactService.send(this.contactForm.getRawValue());
 
-      const result = await response.json();
+      toast.success("Message sent successfully! We'll contact you soon.");
 
-      if (result.success) {
-        this.submitSuccess = true;
-        this.name = '';
-        this.email = '';
-        this.phone = '';
-        this.message = '';
-      } else {
-        this.submitError = true;
-      }
+      this.contactForm.reset();
     } catch (error) {
-      this.submitError = true;
+      toast.error('Something went wrong. Please try again later.');
     } finally {
       this.isSubmitting = false;
     }
