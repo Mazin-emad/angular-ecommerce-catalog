@@ -10,6 +10,8 @@ export interface Product {
   rating: number;
   reviewCount: number;
   image: string;
+  isNew?: boolean;
+  colors?: string[];
 }
 
 @Component({
@@ -20,7 +22,11 @@ export interface Product {
     <div class="group relative flex-shrink-0 w-full max-w-[270px] mx-auto">
       <a [routerLink]="['/product', product.id]" class="block">
         <div class="relative bg-[#F5F5F5] rounded-lg overflow-hidden aspect-square mb-4">
-          @if (product.discount > 0) {
+          @if (product.isNew) {
+            <div class="absolute top-3 left-3 z-10 bg-[#00FF66] text-black text-xs font-medium px-3 py-1.5 rounded">
+              NEW
+            </div>
+          } @else if (product.discount > 0) {
             <div class="absolute top-3 left-3 z-10 bg-[#DB4444] text-white text-xs font-medium px-3 py-1.5 rounded">
               -{{ product.discount }}%
             </div>
@@ -66,7 +72,7 @@ export interface Product {
           <span class="text-gray-500 line-through text-base">\${{ product.originalPrice }}</span>
         }
       </div>
-      <div class="flex items-center gap-1">
+      <div class="flex items-center gap-1 mb-2">
         <div class="flex">
           @for (star of [1, 2, 3, 4, 5]; track star) {
             @if (star <= product.rating) {
@@ -92,6 +98,16 @@ export interface Product {
         </div>
         <span class="text-gray-500 text-sm">({{ product.reviewCount }})</span>
       </div>
+      @if (product.colors && product.colors.length > 0) {
+        <div class="flex items-center gap-1.5">
+          @for (color of product.colors; track color) {
+            <span
+              class="w-4 h-4 rounded-full border border-gray-300"
+              [style.background]="color"
+            ></span>
+          }
+        </div>
+      }
     </div>
   `,
 })

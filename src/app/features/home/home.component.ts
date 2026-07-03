@@ -4,12 +4,28 @@ import { HeroBannerComponent } from './hero-banner/hero-banner';
 import { ProductsComponent } from './products/products.component';
 import { BrowseByCategoryComponent } from './browse-by-category/browse-by-category.component';
 import { BestSellingProductsComponent } from './best-selling-products/best-selling-products.component';
+import { EnhanceMusicComponent } from './enhance-music/enhance-music.component';
+import { ExploreProductsComponent } from './explore-products/explore-products.component';
+import { NewArrivalComponent } from './new-arrival/new-arrival.component';
+import { ServicesComponent } from '../../shared/components/services/services.component';
+import { BackToTopComponent } from './back-to-top/back-to-top.component';
 import { Slide } from './hero-slide/hero-slide';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CategoriesComponent, HeroBannerComponent, ProductsComponent, BrowseByCategoryComponent, BestSellingProductsComponent],
+  imports: [
+    CategoriesComponent,
+    HeroBannerComponent,
+    ProductsComponent,
+    BrowseByCategoryComponent,
+    BestSellingProductsComponent,
+    EnhanceMusicComponent,
+    ExploreProductsComponent,
+    NewArrivalComponent,
+    ServicesComponent,
+    BackToTopComponent,
+  ],
   templateUrl: './home.component.html',
 })
 export class HomeComponent {

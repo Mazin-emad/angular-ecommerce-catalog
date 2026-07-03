@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NgIcon } from '@ng-icons/core';
 import {
@@ -45,11 +45,12 @@ const ICON_MAP: Record<string, string> = {
           @for (category of categories; track category.id) {
             <a
               [routerLink]="category.route"
-              (click)="selectCategory(category.id)"
-              class="aspect-square border rounded-lg flex flex-col items-center justify-center gap-3 md:gap-4 cursor-pointer transition-all duration-200"
-              [class]="selectedCategory() === category.id ? 'border-[#DB4444] bg-[#DB4444] text-white' : 'border-gray-200 bg-white hover:border-[#DB4444]'"
+              class="aspect-square border rounded-lg flex flex-col items-center justify-center gap-3 md:gap-4 cursor-pointer transition-all duration-200 border-gray-200 bg-white hover:bg-[#DB4444] hover:text-white hover:border-[#DB4444]"
             >
-              <ng-icon [svg]="getIcon(category.id)" class="w-10 h-10 md:w-14 md:h-14" />
+              <ng-icon
+                [svg]="getIcon(category.id)"
+                class="[--ng-icon__size:2rem] md:[--ng-icon__size:3.5rem]"
+              />
               <span class="font-medium text-xs md:text-base text-center">{{ category.name }}</span>
             </a>
           }
@@ -58,9 +59,8 @@ const ICON_MAP: Record<string, string> = {
     </section>
   `,
 })
-export class BrowseByCategoryComponent {
-  readonly selectedCategory = signal<string>('camera');
 
+export class BrowseByCategoryComponent {
   readonly categories: Category[] = [
     { id: 'phones', name: 'Phones', route: '/products?category=phones' },
     { id: 'computers', name: 'Computers', route: '/products?category=computers' },
@@ -72,9 +72,5 @@ export class BrowseByCategoryComponent {
 
   getIcon(id: string): string {
     return ICON_MAP[id] || heroDevicePhoneMobile;
-  }
-
-  selectCategory(id: string): void {
-    this.selectedCategory.set(id);
   }
 }
