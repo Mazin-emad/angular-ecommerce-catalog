@@ -8,6 +8,8 @@ import { CartComponent } from './features/cart/cart.component';
 import { WishlistComponent } from './features/wishlist/wishlist.component';
 import { NotFoundComponent } from './features/not-found/not-found.component';
 import { ContactComponent } from './features/contact/contact.component';
+import { LoginComponent } from './features/auth/login/login.component';
+import { SignupComponent } from './features/auth/signup/signup.component';
 
 export const routes: Routes = [
   {
@@ -20,6 +22,8 @@ export const routes: Routes = [
       { path: 'cart', component: CartComponent },
       { path: 'wishlist', component: WishlistComponent },
       { path: 'contact', component: ContactComponent },
+      { path: 'login', component: LoginComponent },
+      { path: 'signup', component: SignupComponent },
     ],
   },
   { path: '**', component: NotFoundComponent },
