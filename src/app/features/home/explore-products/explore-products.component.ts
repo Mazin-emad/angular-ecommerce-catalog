@@ -77,7 +77,7 @@ export class ExploreProductsComponent {
       discount: 0,
       rating: 3,
       reviewCount: 35,
-      image: 'images/products/Breed Dry Dog Food.png',
+      image: 'images/products/Breed Dry Dog Food.webp',
     },
     {
       id: '12',
@@ -87,7 +87,7 @@ export class ExploreProductsComponent {
       discount: 0,
       rating: 5,
       reviewCount: 95,
-      image: 'images/products/HAVIT HV-G92 Gamepad.png',
+      image: 'images/products/CANON EOS DSLR Camera.webp',
     },
     {
       id: '13',
@@ -97,7 +97,7 @@ export class ExploreProductsComponent {
       discount: 0,
       rating: 4.5,
       reviewCount: 325,
-      image: 'images/products/IPS LCD Gaming Monitor.png',
+      image: 'images/products/ASUS FHD Gaming Laptop.webp',
     },
     {
       id: '14',
@@ -107,7 +107,7 @@ export class ExploreProductsComponent {
       discount: 0,
       rating: 4,
       reviewCount: 145,
-      image: 'images/products/RGB liquid CPU Cooler.png',
+      image: 'images/products/Curology Product Set .webp',
     },
     {
       id: '15',
@@ -118,7 +118,7 @@ export class ExploreProductsComponent {
       rating: 4.5,
       reviewCount: 65,
       isNew: true,
-      image: 'images/products/Small BookSelf.png',
+      image: 'images/products/Kids Electric Car.webp',
       colors: ['#DB4444', '#00FF66'],
     },
     {
@@ -129,7 +129,7 @@ export class ExploreProductsComponent {
       discount: 0,
       rating: 4,
       reviewCount: 35,
-      image: 'images/products/AK-900 Wired Keyboard.png',
+      image: 'images/products/Jr. Zoom Soccer Cleats.webp',
       colors: ['#FFD700', '#DB4444'],
     },
     {
@@ -141,7 +141,7 @@ export class ExploreProductsComponent {
       rating: 4,
       reviewCount: 55,
       isNew: true,
-      image: 'images/products/HAVIT HV-G92 Gamepad.png',
+      image: 'images/products/GP11 Shooter USB Gamepad.webp',
       colors: ['#000000', '#DB4444'],
     },
     {
@@ -152,7 +152,7 @@ export class ExploreProductsComponent {
       discount: 0,
       rating: 4.5,
       reviewCount: 55,
-      image: 'images/products/The north coat.png',
+      image: 'images/products/Quilted Satin Jacket.webp',
     },
   ];
 

@@ -37,7 +37,7 @@ import { Component, signal, OnInit, OnDestroy } from '@angular/core';
           </div>
           <div class="relative w-full md:w-1/2 flex items-center justify-center p-4 md:p-0">
             <img
-              src="images/home/boombox.png"
+              src="images/home/boombox.webp"
               alt="JBL Boombox Speaker"
               class="w-full max-w-[300px] md:max-w-[400px] lg:max-w-[500px] h-auto object-contain"
             />

@@ -18,7 +18,7 @@ import { RouterLink } from '@angular/router';
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           <div class="relative bg-black rounded-lg overflow-hidden min-h-[300px] md:min-h-[600px] flex flex-col justify-end p-6 md:p-8">
             <img
-              src="images/home/New Arrival-PlayStation 5.png"
+              src="images/home/New Arrival-PlayStation 5.webp"
               alt="PlayStation 5"
               class="absolute inset-0 w-full h-full object-contain p-8 md:p-12"
             />
@@ -34,7 +34,7 @@ import { RouterLink } from '@angular/router';
           <div class="grid grid-cols-1 gap-4 md:gap-6">
             <div class="relative bg-black rounded-lg overflow-hidden min-h-[200px] md:min-h-[290px] flex flex-col justify-end p-6 md:p-8">
               <img
-                src="images/home/New Arrival-Women's Collections.png"
+                src="images/home/New Arrival-Women's Collections.webp"
                 alt="Women's Collections"
                 class="absolute inset-0 w-full h-full object-cover"
               />
@@ -50,7 +50,7 @@ import { RouterLink } from '@angular/router';
             <div class="grid grid-cols-2 gap-4 md:gap-6">
               <div class="relative bg-black rounded-lg overflow-hidden min-h-[200px] md:min-h-[290px] flex flex-col justify-end p-4 md:p-6">
                 <img
-                  src="images/home/New Arrival-Speakers.png"
+                  src="images/home/New Arrival-Speakers.webp"
                   alt="Speakers"
                   class="absolute inset-0 w-full h-full object-contain p-6"
                 />
@@ -65,7 +65,7 @@ import { RouterLink } from '@angular/router';
 
               <div class="relative bg-black rounded-lg overflow-hidden min-h-[200px] md:min-h-[290px] flex flex-col justify-end p-4 md:p-6">
                 <img
-                  src="images/home/gocci-perfum.png"
+                  src="images/home/gocci-perfum.webp"
                   alt="Perfume"
                   class="absolute inset-0 w-full h-full object-contain p-6"
                 />

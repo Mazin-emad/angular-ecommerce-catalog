@@ -1,16 +1,16 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import { RouterLink } from '@angular/router';
-
 import { toast } from 'ngx-sonner';
 
 import { ContactService } from '../../core/services/contact';
+import { BreadcrumbComponent, BreadcrumbItem } from '../../shared/components/breadcrumb/breadcrumb.component';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule, BreadcrumbComponent],
   templateUrl: './contact.component.html',
 })
 export class ContactComponent {
@@ -18,7 +18,14 @@ export class ContactComponent {
 
   private readonly contactService = inject(ContactService);
 
+  readonly contact = environment.contact;
+
   isSubmitting = false;
+
+  readonly breadcrumbs: BreadcrumbItem[] = [
+    { label: 'Home', link: '/' },
+    { label: 'Contact' },
+  ];
 
   contactForm = this.fb.nonNullable.group({
     name: ['', Validators.required],

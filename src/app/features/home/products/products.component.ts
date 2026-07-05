@@ -111,7 +111,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       discount: 40,
       rating: 4.5,
       reviewCount: 88,
-      image: 'images/products/HAVIT HV-G92 Gamepad.png',
+      image: 'images/products/HAVIT HV-G92 Gamepad.webp',
     },
     {
       id: '2',
@@ -121,7 +121,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       discount: 35,
       rating: 4.5,
       reviewCount: 75,
-      image: 'images/products/AK-900 Wired Keyboard.png',
+      image: 'images/products/AK-900 Wired Keyboard.webp',
     },
     {
       id: '3',
@@ -131,7 +131,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       discount: 30,
       rating: 4.5,
       reviewCount: 99,
-      image: 'images/products/IPS LCD Gaming Monitor.png',
+      image: 'images/products/IPS LCD Gaming Monitor.webp',
     },
     {
       id: '4',
@@ -141,7 +141,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       discount: 25,
       rating: 4.5,
       reviewCount: 99,
-      image: 'images/products/S-Series Comfort Chair.png',
+      image: 'images/products/S-Series Comfort Chair.webp',
     },
     {
       id: '5',
@@ -151,7 +151,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       discount: 20,
       rating: 4,
       reviewCount: 65,
-      image: 'images/products/RGB liquid CPU Cooler.png',
+      image: 'images/products/RGB liquid CPU Cooler.webp',
     },
     {
       id: '6',
@@ -161,7 +161,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
       discount: 30,
       rating: 4.5,
       reviewCount: 45,
-      image: 'images/products/Small BookSelf.png',
+      image: 'images/products/Small BookSelf.webp',
     },
   ];
 

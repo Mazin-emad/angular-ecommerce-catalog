@@ -20,7 +20,7 @@ export interface Product {
   imports: [RouterLink],
   template: `
     <div class="group relative flex-shrink-0 w-full max-w-[270px] mx-auto">
-      <a [routerLink]="['/product', product.id]" class="block">
+      <a [routerLink]="['/products', product.id]" class="block">
         <div class="relative bg-[#F5F5F5] rounded-lg overflow-hidden aspect-square mb-4">
           @if (product.isNew) {
             <div class="absolute top-3 left-3 z-10 bg-[#00FF66] text-black text-xs font-medium px-3 py-1.5 rounded">
@@ -63,7 +63,7 @@ export interface Product {
           </button>
         </div>
       </a>
-      <a [routerLink]="['/product', product.id]">
+      <a [routerLink]="['/products', product.id]">
         <h3 class="font-medium text-base mb-2 line-clamp-1 hover:text-[#DB4444] transition-colors">{{ product.name }}</h3>
       </a>
       <div class="flex items-center gap-3 mb-2">

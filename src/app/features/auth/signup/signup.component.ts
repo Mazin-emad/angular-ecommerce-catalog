@@ -8,16 +8,16 @@ import { UserService } from '../../../core/services/user.service';
   standalone: true,
   imports: [FormsModule, RouterLink],
   template: `
-    <section class="min-h-[calc(100vh-200px)] flex">
-      <div class="hidden lg:block lg:w-1/2 bg-[#CBE4E8] relative overflow-hidden">
+    <section class="min-h-[calc(100vh-200px)] flex flex-col lg:flex-row">
+      <div class="hidden lg:block lg:flex-1 bg-[#CBE4E8] relative overflow-hidden">
         <img
-          src="images/auth/shopping-cart-phone.svg"
+          src="images/auth/login-signup-image.webp"
           alt="Shopping cart with phone"
           class="absolute inset-0 w-full h-full object-cover object-center"
         />
       </div>
 
-      <div class="w-full lg:w-1/2 flex items-center justify-center px-6 py-12">
+      <div class="w-full lg:max-w-[480px] lg:min-w-[480px] flex items-center justify-center px-6 py-12">
         <div class="w-full max-w-[370px]">
           <h1 class="text-[32px] font-medium tracking-tight mb-2">Create an account</h1>
           <p class="text-base mb-10">Enter your details below</p>

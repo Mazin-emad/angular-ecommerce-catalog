@@ -60,7 +60,7 @@ export class BestSellingProductsComponent {
       discount: 0,
       rating: 5,
       reviewCount: 65,
-      image: 'images/products/The north coat.png',
+      image: 'images/products/The north coat.webp',
     },
     {
       id: '8',
@@ -70,7 +70,7 @@ export class BestSellingProductsComponent {
       discount: 0,
       rating: 4.5,
       reviewCount: 65,
-      image: 'images/products/Light-Gucci-Savoy-medium-duffle-bag 1.png',
+      image: 'images/products/Light-Gucci-Savoy-medium-duffle-bag 1.webp',
     },
     {
       id: '9',
@@ -80,7 +80,7 @@ export class BestSellingProductsComponent {
       discount: 0,
       rating: 4.5,
       reviewCount: 65,
-      image: 'images/products/RGB liquid CPU Cooler.png',
+      image: 'images/products/RGB liquid CPU Cooler.webp',
     },
     {
       id: '10',
@@ -90,7 +90,7 @@ export class BestSellingProductsComponent {
       discount: 0,
       rating: 5,
       reviewCount: 65,
-      image: 'images/products/Small BookSelf.png',
+      image: 'images/products/Small BookSelf.webp',
     },
   ];
 
