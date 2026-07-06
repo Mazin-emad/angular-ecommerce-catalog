@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { NgIcon } from '@ng-icons/core';
 import {
   heroShoppingBag,
@@ -32,7 +33,7 @@ const ICON_MAP: Record<string, string> = {
 @Component({
   selector: 'app-categories',
   standalone: true,
-  imports: [NgIcon],
+  imports: [RouterLink, NgIcon],
   template: `
     <aside
       class="shrink-0 md:w-52 border-b md:border-r md:border-t md:border-b border-gray-200 pt-3 md:pt-4 pb-3 md:pb-4"
@@ -44,7 +45,8 @@ const ICON_MAP: Record<string, string> = {
         @for (cat of categories; track cat.name) {
           <li class="shrink-0">
             <a
-              href="#"
+              [routerLink]="['/products']"
+              [queryParams]="{ category: categoryRoute(cat.name) }"
               class="flex items-center justify-between gap-2 text-gray-700 hover:text-gray-900 transition-colors whitespace-nowrap"
             >
               <div class="flex items-center gap-2 md:gap-3">
@@ -77,5 +79,13 @@ export class CategoriesComponent {
 
   getIcon(key: string): string {
     return ICON_MAP[key] || heroShoppingBag;
+  }
+
+  categoryRoute(name: string): string {
+    return name
+      .toLowerCase()
+      .replace(/['&]/g, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-');
   }
 }

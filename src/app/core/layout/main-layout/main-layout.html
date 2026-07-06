@@ -1,9 +1,11 @@
-<app-announcement-bar />
+<div class="flex flex-col min-h-screen">
+  <app-announcement-bar />
 
-<app-header />
+  <app-header />
 
-<main class="max-w-6xl mx-auto px-4">
-  <router-outlet />
-</main>
+  <main class="flex-1 max-w-6xl w-full mx-auto px-4">
+    <router-outlet />
+  </main>
 
-<app-footer />
+  <app-footer />
+</div>

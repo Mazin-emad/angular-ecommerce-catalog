@@ -52,15 +52,3 @@ a {
   opacity: 1;
 }
 
-/* ── Marquee ── */
-
-@media (width < 48rem) {
-  @keyframes marquee {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
-  }
-
-  .marquee {
-    animation: marquee 18s linear infinite;
-  }
-}

@@ -29,8 +29,10 @@ export class AnnouncementBar implements OnInit {
   }
 
   onLanguageChange() {
-    toast.warning(this.languages.find(l => l.code === this.selectedLanguage)?.name + ' is not a supported yet.');
-    // TODO: from Mazin: hook this up to translation/i18n service
+    if (this.selectedLanguage === 'en') return;
+
+    toast.warning(this.languages.find(l => l.code === this.selectedLanguage)?.name + ' is not supported yet.');
+    this.selectedLanguage = 'en';
   }
 
   private calcAnnouncementMessage(): string {

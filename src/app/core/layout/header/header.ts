@@ -5,11 +5,12 @@ import { FormsModule } from '@angular/forms';
 import { LogoComponent } from '../../../shared/logo/logo';
 import { WishlistService } from '../../../shared/services/wishlist.service';
 import { CartService } from '../../../shared/services/cart.service';
+import { UserMenuComponent } from '../../../shared/components/user-menu/user-menu.component';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, FormsModule, LogoComponent],
+  imports: [RouterLink, RouterLinkActive, FormsModule, LogoComponent, UserMenuComponent],
   templateUrl: './header.html',
 })
 export class Header {

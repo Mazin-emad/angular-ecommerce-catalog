@@ -15,6 +15,7 @@ import { PrivacyPolicyComponent } from './features/privacy-policy/privacy-policy
 import { TermsComponent } from './features/terms/terms.component';
 import { FaqComponent } from './features/faq/faq.component';
 import { CheckoutComponent } from './features/checkout/checkout.component';
+import { AccountComponent } from './features/account/account.component';
 
 export const routes: Routes = [
   {
@@ -32,6 +33,7 @@ export const routes: Routes = [
       { path: 'privacy-policy', component: PrivacyPolicyComponent },
       { path: 'terms', component: TermsComponent },
       { path: 'faq', component: FaqComponent },
+      { path: 'account', component: AccountComponent },
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignupComponent },
       { path: '**', component: NotFoundComponent },
