@@ -3,30 +3,30 @@ import { Router } from '@angular/router';
 import { Observable, of, throwError, delay, tap } from 'rxjs';
 import { User, LoginRequest, AuthResponse } from '../models/user.model';
 
-const MOCK_USERS: (User & { password: string })[] = [
-  {
-    id: '1',
-    name: 'John Doe',
-    email: 'john@example.com',
-    phone: '+1234567890',
-    address: 'Kingston, 5236, United State',
-    password: 'password123',
-    createdAt: new Date('2024-01-01'),
-  },
-  {
-    id: '2',
-    name: 'Jane Smith',
-    email: 'jane@example.com',
-    phone: '+0987654321',
-    address: '4120 Maple Avenue, Brooklyn, 11201, United States',
-    password: 'password456',
-    createdAt: new Date('2024-02-15'),
-  },
-];
+const USERS_KEY = 'app_users';
 
-@Injectable({
-  providedIn: 'root',
-})
+interface StoredUser extends User {
+  password: string;
+}
+
+function loadUsers(): StoredUser[] {
+  try {
+    const raw = localStorage.getItem(USERS_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveUsers(users: StoredUser[]) {
+  try {
+    localStorage.setItem(USERS_KEY, JSON.stringify(users));
+  } catch {
+    console.warn('Failed to save users to localStorage');
+  }
+}
+
+@Injectable({ providedIn: 'root' })
 export class AuthService {
   private readonly currentUserSignal = signal<User | null>(null);
   private readonly tokenSignal = signal<string | null>(null);
@@ -36,6 +36,7 @@ export class AuthService {
   readonly token = this.tokenSignal.asReadonly();
   readonly isLoading = this.isLoadingSignal.asReadonly();
   readonly isAuthenticated = computed(() => !!this.currentUserSignal());
+  readonly isAdmin = computed(() => this.currentUserSignal()?.role === 'admin');
 
   constructor(private router: Router) {
     this.loadFromStorage();
@@ -44,28 +45,42 @@ export class AuthService {
   login(request: LoginRequest): Observable<AuthResponse> {
     this.isLoadingSignal.set(true);
 
-    const user = MOCK_USERS.find(
-      u =>
-        (u.email === request.emailOrPhone ||
-          u.phone === request.emailOrPhone) &&
-        u.password === request.password
+    const users = loadUsers();
+    const existing = users.find(
+      u => u.email.toLowerCase() === request.emailOrPhone.toLowerCase()
     );
 
-    if (!user) {
+    if (existing && existing.blocked) {
       this.isLoadingSignal.set(false);
-      return throwError(() => new Error('Invalid email/phone or password')).pipe(
-        delay(800)
-      );
+      return throwError(() => new Error('Your account has been blocked')).pipe(delay(800));
     }
 
-    const { password, ...userWithoutPassword } = user;
+    const isAdminEmail = request.emailOrPhone.toLowerCase() === 'admin@eldokan.com';
+    let user: StoredUser;
+
+    if (existing) {
+      user = existing;
+    } else {
+      user = {
+        id: `u_${Date.now()}`,
+        name: request.emailOrPhone.split('@')[0],
+        email: request.emailOrPhone,
+        role: isAdminEmail ? 'admin' : 'user',
+        blocked: false,
+        password: request.password,
+        createdAt: new Date(),
+      };
+      saveUsers([...users, user]);
+    }
+
+    const { password: _p, ...userWithoutPassword } = user;
     const response: AuthResponse = {
       user: userWithoutPassword,
       token: this.generateMockToken(),
     };
 
     return of(response).pipe(
-      delay(800),
+      delay(500),
       tap(res => {
         this.currentUserSignal.set(res.user);
         this.tokenSignal.set(res.token);
@@ -79,12 +94,11 @@ export class AuthService {
     this.currentUserSignal.set(null);
     this.tokenSignal.set(null);
     this.clearStorage();
-    this.router.navigate(['/']);
+    this.router.navigate(['/login']);
   }
 
   getCurrentUser(): Observable<User | null> {
-    const user = this.currentUserSignal();
-    return of(user).pipe(delay(200));
+    return of(this.currentUserSignal()).pipe(delay(200));
   }
 
   updateCurrentUser(updates: Partial<User>): Observable<User> {
@@ -100,12 +114,32 @@ export class AuthService {
     return of(updatedUser).pipe(delay(500));
   }
 
+  getAllUsers(): User[] {
+    return loadUsers().map(({ password: _p, ...u }) => u);
+  }
+
+  toggleBlockUser(userId: string): User | null {
+    const users = loadUsers();
+    const idx = users.findIndex(u => u.id === userId);
+    if (idx === -1) return null;
+    users[idx].blocked = !users[idx].blocked;
+    saveUsers(users);
+    const { password: _p, ...user } = users[idx];
+    return user;
+  }
+
+  updateUserRole(userId: string, role: 'user' | 'admin'): User | null {
+    const users = loadUsers();
+    const idx = users.findIndex(u => u.id === userId);
+    if (idx === -1) return null;
+    users[idx].role = role;
+    saveUsers(users);
+    const { password: _p, ...user } = users[idx];
+    return user;
+  }
+
   private generateMockToken(): string {
-    return (
-      'mock_jwt_' +
-      Math.random().toString(36).substring(2, 15) +
-      Math.random().toString(36).substring(2, 15)
-    );
+    return 'mock_jwt_' + Math.random().toString(36).substring(2, 15);
   }
 
   private saveToStorage(user: User, token: string): void {
@@ -119,12 +153,15 @@ export class AuthService {
 
   private loadFromStorage(): void {
     try {
-      const userJson = localStorage.getItem('auth_user');
+      const raw = localStorage.getItem('auth_user');
       const token = localStorage.getItem('auth_token');
-
-      if (userJson && token) {
-        const user = JSON.parse(userJson) as User;
-        this.currentUserSignal.set(user);
+      if (raw && token) {
+        const user = JSON.parse(raw) as User;
+        this.currentUserSignal.set({
+          ...user,
+          role: user.role ?? 'user',
+          blocked: user.blocked ?? false,
+        });
         this.tokenSignal.set(token);
       }
     } catch {

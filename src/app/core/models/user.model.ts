@@ -5,6 +5,8 @@ export interface User {
   phone?: string;
   address?: string;
   avatar?: string;
+  role: 'user' | 'admin';
+  blocked: boolean;
   createdAt: Date;
 }
 

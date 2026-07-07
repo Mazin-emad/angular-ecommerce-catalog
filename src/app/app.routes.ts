@@ -16,8 +16,29 @@ import { TermsComponent } from './features/terms/terms.component';
 import { FaqComponent } from './features/faq/faq.component';
 import { CheckoutComponent } from './features/checkout/checkout.component';
 import { AccountComponent } from './features/account/account.component';
+import { AdminLayout } from './features/admin/layouts/admin-layout';
+import { AdminGuard } from './core/guards/admin.guard';
+import { AdminDashboardComponent } from './features/admin/pages/dashboard/dashboard.component';
+import { AdminProductsComponent } from './features/admin/pages/products/products.component';
+import { AdminOrdersComponent } from './features/admin/pages/orders/orders.component';
+import { AdminUsersComponent } from './features/admin/pages/users/users.component';
+import { AdminCategoriesComponent } from './features/admin/pages/categories/categories.component';
+import { AdminSettingsComponent } from './features/admin/pages/settings/settings.component';
 
 export const routes: Routes = [
+  {
+    path: 'admin',
+    component: AdminLayout,
+    canActivate: [AdminGuard],
+    children: [
+      { path: '', component: AdminDashboardComponent },
+      { path: 'products', component: AdminProductsComponent },
+      { path: 'orders', component: AdminOrdersComponent },
+      { path: 'users', component: AdminUsersComponent },
+      { path: 'categories', component: AdminCategoriesComponent },
+      { path: 'settings', component: AdminSettingsComponent },
+    ],
+  },
   {
     path: '',
     component: MainLayout,

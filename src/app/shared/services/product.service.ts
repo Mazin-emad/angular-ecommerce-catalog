@@ -268,6 +268,18 @@ export class ProductService {
     },
   ]);
 
+  get totalProducts(): number {
+    return this.products().length;
+  }
+
+  get lowStockProducts(): number {
+    return this.products().filter(p => !p.inStock).length;
+  }
+
+  get outOfStockProducts(): number {
+    return this.products().filter(p => !p.inStock).length;
+  }
+
   getProducts(): Observable<ProductDetail[]> {
     return of(this.products()).pipe(delay(200));
   }
@@ -289,5 +301,33 @@ export class ProductService {
     }
 
     return of(related).pipe(delay(200));
+  }
+
+  addProduct(product: Omit<ProductDetail, 'id'>): Observable<ProductDetail> {
+    const newProduct: ProductDetail = {
+      ...product,
+      id: `${Date.now()}`,
+    };
+    this.products.update(list => [...list, newProduct]);
+    return of(newProduct).pipe(delay(300));
+  }
+
+  updateProduct(id: string, data: Partial<ProductDetail>): Observable<ProductDetail> {
+    let updated!: ProductDetail;
+    this.products.update(list =>
+      list.map(p => {
+        if (p.id === id) {
+          updated = { ...p, ...data };
+          return updated;
+        }
+        return p;
+      })
+    );
+    return of(updated).pipe(delay(300));
+  }
+
+  deleteProduct(id: string): Observable<boolean> {
+    this.products.update(list => list.filter(p => p.id !== id));
+    return of(true).pipe(delay(300));
   }
 }
